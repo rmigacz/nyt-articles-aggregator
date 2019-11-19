@@ -1,0 +1,45 @@
+spring:
+  profiles:
+    active: @spring.profiles.active@
+server:
+  port: ${port:5000}
+nyt:
+  api:
+    key: ${nyt-api-key}
+---
+spring:
+  profiles: without-cache
+  cache:
+    type: NONE
+  autoconfigure:
+    exclude:
+      - org.springframework.boot.autoconfigure.data.redis.RedisAutoConfiguration
+      - org.springframework.boot.autoconfigure.data.redis.RedisRepositoriesAutoConfiguration
+---
+spring:
+  profiles: caffeine-cache
+  cache:
+    cache-names: articles
+    caffeine:
+      spec: ${caffeine-spec:initialCapacity=100,maximumSize=500,expireAfterAccess=5m,recordStats}
+  autoconfigure:
+    exclude:
+      - org.springframework.boot.autoconfigure.data.redis.RedisAutoConfiguration
+      - org.springframework.boot.autoconfigure.data.redis.RedisRepositoriesAutoConfiguration
+logging:
+  level:
+    org.springframework.cache:
+      TRACE
+---
+spring:
+  profiles: redis-cache
+  cache:
+    type: redis
+  redis:
+    port: ${redis-port:6379}
+    host: ${redis-host:localhost}
+    password: ${redis-password:}
+logging:
+  level:
+    org.springframework.cache:
+      TRACE
