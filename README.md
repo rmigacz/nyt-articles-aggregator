@@ -39,9 +39,9 @@ https://google.github.io/styleguide/javaguide.html
 
 ## Built With
 
-* [Spring Boot](https://spring.io/projects/spring-boot) - cache server
-* [Caffeine](https://redis.io/) - cache db for the server
-* [Redis](https://redis.io/) - cache db for the server
-* [Maven](https://maven.apache.org/) - dependency management
-* [Docker](https://maven.apache.org/) - dependency management
-* [Spock](http://spockframework.org/) - testing and specification framework
+* [Spring Boot](https://spring.io/projects/spring-boot)
+* [Caffeine](https://github.com/ben-manes/caffeine)
+* [Redis](https://redis.io/)
+* [Maven](https://maven.apache.org/)
+* [Docker](https://www.docker.com/)
+* [Spock](http://spockframework.org/)
