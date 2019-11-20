@@ -15,19 +15,30 @@ Inspiration: https://github.com/jakubnabrdalik/hentai
 
 ### Available profiles
 
-The project offers 4 different Maven build profiles - three of them are related  with the caching, 
-one with running integration tests.
+The project offers 4 different Maven build profiles - three of them activate specific Spring 
+profiles related with caching, one triggers integration tests.
 
 |Profile name|Description|Properties names|Properties default values|
 |---|---|---|---|
 |without-cache|disables caching|-|-|
 |caffeine-cache|enables in-memory caching with Caffeine|caffeine-spec|initialCapacity=100,maximumSize=500,expireAfterAccess=5m,recordStats|
-|redis-cache|enables caching with Redis|redis-port, redis-host, redis-password|6379, localhost, -|
+|redis-cache|enables caching with Redis|redis-port,redis-host,redis-password|6379,localhost,-|
 |integration-test|runs integration tests with disabled caching|-|-|
 
-### Installing 
+### Installing and running
 
-TODO
+#### Build with unit tests
+```
+./mvnw clean install
+```
+
+#### Start the app with Maven 
+
+By default, the **without-cache** profile is activated;
+
+```
+./mvnw spring-boot:run -Dnyt-api-key=YOUR-NYT-API-KEY
+```
 
 ## Deployment
 
