@@ -50,12 +50,12 @@ class ArticleRestTemplateClient implements ArticleClient {
 
     final ResponseEntity<String> searchResponse = restTemplate
         .exchange(searchUrl, HttpMethod.GET, entity, String.class);
-    final List<Article> foundedArticles = responseParser
+    final List<Article> foundArticles = responseParser
         .parseSearchResponse(searchResponse.getBody());
 
-    logger.info("Founded {} articles", foundedArticles.size());
+    logger.info("Found {} articles", foundArticles.size());
 
-    return foundedArticles;
+    return foundArticles;
   }
 
   private HttpEntity<String> buildArticleSearchHttpEntity() {

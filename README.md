@@ -27,22 +27,43 @@ profiles related with caching, one triggers integration tests.
 
 ### Installing and running
 
-#### Build with unit tests
+#### Running tests
+
+Runs unit tests:
 ```
-./mvnw clean install
+./mvnw clean test
 ```
 
-#### Start the app with Maven 
-
-By default, the **without-cache** profile is activated;
-
+Runs integration tests:
 ```
-./mvnw spring-boot:run -Dnyt-api-key=YOUR-NYT-API-KEY
+./mvnw clean verify -Pintegration-test -Dnyt-api-key=${YOUR-NYT-API-KEY}
 ```
+
+#### App usage
+
+The application can be started with Maven. By default, the **without-cache** profile is activated:
+```
+./mvnw spring-boot:run -P${PROFILE-NAME} -Dnyt-api-key=${YOUR-NYT-API-KEY}
+```
+
+In order to search for articles, perform *GET* request to */article* endpoint. Example:
+```
+curl -XGET -H "Content-type: application/json" -d '{
+  "query":  "donaldd trump",
+  "sort": "newest"
+}' 'http://localhost:5000/article'
+```
+
 
 ## Deployment
 
-TODO
+After the Maven build, a ready-to-deploy **fat jar** with embedded Tomcat under **/target** is generated.
+
+Running the app packaged as JAR:
+```
+java -jar ${JAR-NAME} --spring.profiles.active=${PROFILE-NAME} --nyt-api-key=${YOUR-NYT-API-KEY}
+
+```
 
 ## Code style
 
