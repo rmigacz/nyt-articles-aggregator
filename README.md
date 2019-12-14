@@ -57,7 +57,8 @@ curl -XGET -H "Content-type: application/json" -d '{
 
 ## Deployment
 
-After the Maven build, a ready-to-deploy **fat jar** with embedded Tomcat under **/target** is generated.
+After the Maven build, a ready-to-deploy **fat jar** with embedded Tomcat is generated under **/target**
+directory.
 
 Running the app packaged as JAR:
 ```
